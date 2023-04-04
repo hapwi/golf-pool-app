@@ -276,13 +276,13 @@
   <script>
     // Replace with your API key and spreadsheet ID
     const apiKey = '{{ APIKEY }}';
-    const spreadsheetId = '1_bP0NUG6XqrF0XQvKXNm3b07QuHABfvWotsemGToyYg';
+        const spreadsheetId2 = '{{ ENTRIESAPI }}';
 
     // Function to fetch Google Sheets data
     async function fetchGoogleSheetsData() {
       try {
         const response = await fetch(
-          `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A:K?key=${apiKey}`);
+          `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId2}/values/Sheet1!A:K?key=${apiKey}`);
         const data = await response.json();
 
         // Check if there's an error in the response

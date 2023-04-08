@@ -1,5 +1,33 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import os
+from dotenv import load_dotenv
+import requests
+
+load_dotenv()
+app = Flask(__name__)
+app.config['APIKEY'] = os.environ.get('APIKEY')
+app.config['PLAYERAPI'] = os.environ.get('PLAYERAPI')
+app.config['LEADAPI'] = os.environ.get('LEADAPI')
+app.config['ENTRIESAPI'] = os.environ.get('ENTRIESAPI')
+
+@app.route('/api/data', methods=['GET'])
+def get_data():
+    # Replace the URL with the appropriate API endpoint
+    url = 'https://api.example.com/data'
+
+    headers = {
+        'Authorization': f'Bearer {app.config["APIKEY"]}'
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = {'error': 'An error occurred'}
+
+    return jsonify(data)
+
 
 app = Flask(__name__)
 
